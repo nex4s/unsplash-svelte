@@ -62,13 +62,13 @@
   
     <div class="input-container">
       <input
-        class="input-field"
+        class="input-field z-1"
         bind:value="{query}"
         on:keydown={handleKeyPress}
         placeholder="Enter query..."
       />
       <input
-        class="input-field"
+        class="input-field z-1"
         type="number"
         bind:value="{page}"
         on:keydown={handleKeyPress}
