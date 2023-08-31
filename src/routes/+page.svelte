@@ -149,6 +149,7 @@
     left: 0;
     right: 0;
     padding: 0 10px;
+z-index: 1;
   }
 
   .ml,
