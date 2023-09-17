@@ -1,9 +1,6 @@
-<!-- Todo.svelte -->
 <script>
   // @ts-nocheck
-  
-  
-    let client_id = 'PQcfzFaoU4aWTpPwGTE25RcTCqeDcUNbgbYhBy_H3Ww';
+  let client_id = 'PQcfzFaoU4aWTpPwGTE25RcTCqeDcUNbgbYhBy_H3Ww';
   let query = ''
     function getImage(query, page) {
       const requestUrl = `https://api.unsplash.com/search/photos?query=${query}&client_id=${client_id}&page=${!page ? 1 : parseInt(page)}`;
@@ -47,118 +44,42 @@
       updateImages(); // Call the function to update images based on the entered query
     }
   }
+  
   </script>
   
-  
   <html class="h-full bg-black" lang="en">
-  <div class="gallery">
-    <img class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 border-solid rounded-lg border-gray-400 border-opacity-50" width="350px" src={images[currentIndex]} alt="Gallery Image">
-    <div class="arrows absolute flex justify-between w-full top-1/2 transform -translate-y-1/2">
-      <button class="ml relative bg-transparent text-white font-sans font-bold text-7xl" on:click={previous}>
-        <div class="crcl"></div>⮘</button>
-      <button class="mr relative bg-transparent text-white font-sans font-bold text-7xl" on:click={next}>
-        <div class="crcl"></div>⮚</button>
-    </div>
+    <div class="fixed inset-0 flex items-center justify-center">
+      <div class="border-transparent max-w-3xl mx-auto rounded-2xl border-2 border-solid p-6 backdrop-blur-sm bg-purple/40 text-center flex flex-col items-center">
+        <!-- svelte-ignore a11y-missing-attribute -->
+        <div class="gallery mb-5">
+          <img id="avatar" class="border-solid rounded-lg border-gray-400 border-opacity-50" src="{images[currentIndex]}" height="350px" width="350px" alt="Avatar">
+        </div>
   
-    <div class="input-container">
-      <input
-        class="input-field z-1"
-        bind:value="{query}"
-        on:keydown={handleKeyPress}
-        placeholder="Enter query..."
-      />
-      <input
-        class="input-field z-1"
-        type="number"
-        bind:value="{page}"
-        on:keydown={handleKeyPress}
-        placeholder="Enter page..."
-      />
+        <!-- Flex container for buttons and input fields -->
+        <div class="flex flex-col md:flex-row justify-center items-center w-full text-gray-400 mt-5">
+          <!-- Left Arrow and Input Field -->
+          <div class="flex items-center mb-2 md:mb-0">
+            <button on:click={previous} class="mr-2">◀</button>
+            <input
+              class="input-field z-1 flex-grow"
+              bind:value="{query}"
+              on:keydown={handleKeyPress}
+              placeholder="Enter query..."
+            />
+          </div>
+  
+          <!-- Right Button and Input Field -->
+          <div class="flex items-center mt-2 md:mt-0">
+            <input
+              class="input-field z-1"
+              type="number"
+              bind:value="{page}"
+              on:keydown={handleKeyPress}
+              placeholder="Enter page..."
+            />
+            <button on:click={next} class="ml-2">▶</button>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
   </html>
-  
-  
-  
-      <style>
-        
-  .crcl {
-    font-family: galano;
-  }
-  
-        .mr {
-          margin-right: 250px
-        }
-  
-  
-        .ml {
-          margin-left: 250px;
-        }
-  
-        @media (min-width: 769px) {
-    .input-container {
-      justify-content: center;
-      display: flex;
-      align-items: center;
-      font-family: 'Courier New', Courier, monospace;
-      font-weight: 800;
-      border-color: transparent;
-      border-style: solid;
-      border-radius: 20px;
-      height: 30px;
-    }
-  
-    .input-field {
-      margin-left: 10px;
-      margin-right: 10px;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .gallery {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .input-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 20px;
-    }
-  
-    .input-field {
-      width: 80%;
-      max-width: 300px;
-      margin-bottom: 10px;
-    }
-  }
-
-  
-  @media (max-width: 768px) {
-  .arrows {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-    position: fixed;
-    bottom: 20px;
-    left: 0;
-    right: 0;
-    padding: 0 10px;
-z-index: 1;
-  }
-
-  .ml,
-  .mr {
-    margin-left: 0;
-    margin-right: 0;
-  }
-}
-
-        
-      </style>
-  
